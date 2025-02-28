@@ -13,7 +13,8 @@ from langchain.schema import HumanMessage     # Import HumanMessage
 # # Set OpenAI API key
 # OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Use Streamlit secrets in production
-if "OPENAI_API_KEY" in st.secrets:
+# Use Streamlit secrets in production; fallback to .env for local development
+if "general" in st.secrets and "OPENAI_API_KEY" in st.secrets["general"]:
     OPENAI_API_KEY = st.secrets["general"]["OPENAI_API_KEY"]
 st.set_page_config(layout="wide")
 # Initialize session state for retriever
